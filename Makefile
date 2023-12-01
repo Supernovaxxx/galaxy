@@ -25,6 +25,7 @@ EPHEMERAL_ARCHIVES ?= \
 
 # Behavior setup
 PROJECT_NAME ?= $(shell basename $(ROOT_DIR) | tr a-z A-Z)
+PUBLISH_BRANCH ?= gh-pages
 
 # Executables definition
 GIT ?= git
@@ -70,6 +71,23 @@ run:: ## Launch application locally
 
 finish:: ## Stop application execution
 
+# TEMP_BRANCH ?= $(PUBLISH_BRANCH)
+
+publish:: ## Publish site to Github Pages
+	git checkout --orphan $(PUBLISH_BRANCH)
+
+    # Remove unwanted files from the working directory, keeping only the target subfolder
+    # git rm -r --cached :/ && git reset -- $(OUTPUT_DIR)
+
+    # Commit changes on the temporary branch
+    # git commit -m "Publish to Github Pages"
+
+    # Push the changes to the remote orphan branch, overwriting its history
+    # git push --force origin HEAD:refs/heads/$(PUBLISH_BRANCH)
+
+    # Delete the temporary branch locally
+    # git branch --delete --force $(TEMP_BRANCH)
+
 clean:: ## Delete project ephemeral archives
 	-$(REMOVE) $(EPHEMERAL_ARCHIVES)
 
@@ -79,4 +97,4 @@ veryclean:: clean ## Delete all generated files
 
 .EXPORT_ALL_VARIABLES:
 .ONESHELL:
-.PHONY: help prepare init execute setup build run finish clean veryclean
+.PHONY: help prepare init execute setup build run finish publish clean veryclean
