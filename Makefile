@@ -57,7 +57,10 @@ execute:: setup run ## Setup and run application
 
 setup:: clean ## Process source code into an executable program
 
-build:: setup ## Treat file generation
+bundle:: ## Bundle source files
+	$(NPM) run bundle
+
+build:: setup ## Build application
 	$(QUARTZ) build \
 		--directory $(CONTENT_DIR) \
 		--output $(OUTPUT_DIR)
@@ -79,4 +82,4 @@ veryclean:: clean ## Delete all generated files
 
 .EXPORT_ALL_VARIABLES:
 .ONESHELL:
-.PHONY: help prepare init execute setup build run finish clean veryclean
+.PHONY: help prepare init execute setup bundle build run finish clean veryclean
