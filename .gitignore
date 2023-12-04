@@ -1,13 +1,31 @@
-.DS_Store
-.gitignore
-node_modules
-public
-dist
-prof
+# VCS filter-out patterns
+#
+# This file specifies untracked files to be ignored in code versioning.
+# See https://www.atlassian.com/git/tutorials/saving-changes/gitignore.
+
+
+# Node
+node_modules/
 tsconfig.tsbuildinfo
-.obsidian
+
+# Quartz
 .quartz-cache
-private/
+
+# Generated files
+content/
+public/
+dist/
+
+# Content ignored paths
+content/.obsidian
+content/private/
+
+# Replit
 .replit
 replit.nix
-content
+
+# MacOS
+.DS_Store
+
+# Others
+prof
